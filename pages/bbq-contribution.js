@@ -1,6 +1,16 @@
+import React from "react";
+
 export default function BBQContribution() {
   return (
-    <div style={{ padding: "2rem", fontFamily: "Arial, sans-serif", lineHeight: "1.6" }}>
+    <div
+      style={{
+        padding: "2rem",
+        fontFamily: "Arial, sans-serif",
+        lineHeight: "1.6",
+        maxWidth: "800px",
+        margin: "0 auto",
+      }}
+    >
       <h1>Hi!</h1>
       <p>
         Thanks for getting this far and listing your name down. Please make sure you read all the
@@ -16,7 +26,7 @@ export default function BBQContribution() {
         </a>
         . This will go towards the food and DJs playing throughout the night.
         <br />
-        Please note you do not have to bring anything after placing the contribution.
+        <strong>Please note:</strong> You do <u>not</u> have to bring anything after placing the contribution.
       </p>
 
       <h3>DIETARY REQUIREMENTS:</h3>
@@ -34,8 +44,4 @@ export default function BBQContribution() {
 
       <p>
         Thanks so much and see you soon! <br />
-        The full address will be listed 24 hrs to the event and the closest station is <strong>Norbury Station</strong>.
-      </p>
-    </div>
-  );
-}
+        The full address will be listed 24 hrs to the event and the
