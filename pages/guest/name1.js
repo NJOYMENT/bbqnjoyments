@@ -1,31 +1,198 @@
-import { useRouter } from 'next/router';
-import guestData from '../../data/guests.json';
+// pages/guests/[name].js
 
-export default function GuestPage() {
-  const router = useRouter();
-  const { name } = router.query;
+import { useRouter } from "next/router";
 
-  if (!name) return <p>Loading...</p>;
+const guestMessages = {
+  "janay-marie": {
+    displayName: "Janay Marie",
+    message:
+      "We would be grateful if you can bring any of the following: Corn on the cob, Sweet Potatoes, Salad, Ice Cream, Condiments, Hot Dog, Burger Buns and Coleslaw!",
+  },
+  "bola-akeju": {
+    displayName: "Bola Akeju",
+    message:
+      "We would be grateful if you can bring any of the following: Corn on the cob, Sweet Potatoes, Salad, Ice Cream, Condiments, Hot Dog, Burger Buns and Coleslaw!",
+  },
+  "sarabi": {
+    displayName: "Sarabi",
+    message:
+      "We would be grateful if you can bring any of the following: Corn on the cob, Sweet Potatoes, Salad, Ice Cream, Condiments, Hot Dog, Burger Buns and Coleslaw!",
+  },
+  "winifred-asante": {
+    displayName: "Winifred Asante",
+    message:
+      "We would be grateful if you can bring any of the following: Corn on the cob, Sweet Potatoes, Salad, Ice Cream, Condiments, Hot Dog, Burger Buns and Coleslaw!",
+  },
+  "zhane-paige": {
+    displayName: "Zhané Paige",
+    message:
+      "We would be grateful if you can bring any of the following: Corn on the cob, Sweet Potatoes, Salad, Ice Cream, Condiments, Hot Dog, Burger Buns and Coleslaw!",
+  },
+  "lara-grace-ilori": {
+    displayName: "Lara Grace Ilori",
+    message:
+      "We would be grateful if you can bring any of the following: Corn on the cob, Sweet Potatoes, Salad, Ice Cream, Condiments, Hot Dog, Burger Buns and Coleslaw!",
+  },
+  "tito-mogaji": {
+    displayName: "Tito Mogaji",
+    message:
+      "We would be grateful if you can bring any of the following: Corn on the cob, Sweet Potatoes, Salad, Ice Cream, Condiments, Hot Dog, Burger Buns and Coleslaw!",
+  },
+  "kodj": {
+    displayName: "Kodj",
+    message:
+      "We would be grateful if you can bring any of the following: Corn on the cob, Sweet Potatoes, Salad, Ice Cream, Condiments, Hot Dog, Burger Buns and Coleslaw!",
+  },
+  "dalvin-james": {
+    displayName: "Dalvin James",
+    message:
+      "We would be grateful if you can bring any of the following: Mac and Cheese, Kebab Sticks, Condiments, Beef or Fish Patties and Chicken Wings.",
+  },
+  "zahira-odimayo": {
+    displayName: "Zahira Odimayo",
+    message:
+      "We would be grateful if you can bring any of the following: Mac and Cheese, Kebab Sticks, Condiments, Beef or Fish Patties and Chicken Wings.",
+  },
+  "renee-binns": {
+    displayName: "Renée Binns",
+    message:
+      "We would be grateful if you can bring any of the following: Mac and Cheese, Kebab Sticks, Condiments, Beef or Fish Patties and Chicken Wings.",
+  },
+  "fee-mak": {
+    displayName: "Fee Mak",
+    message:
+      "We would be grateful if you can bring any of the following: Mac and Cheese, Kebab Sticks, Condiments, Beef or Fish Patties and Chicken Wings.",
+  },
+  "ndouri": {
+    displayName: "Ndouri",
+    message:
+      "We would be grateful if you can bring any of the following: Mac and Cheese, Kebab Sticks, Condiments, Beef or Fish Patties and Chicken Wings.",
+  },
+  "mel-ijieh": {
+    displayName: "Mel Ijieh",
+    message:
+      "We would be grateful if you can bring any of the following: Mac and Cheese, Kebab Sticks, Condiments, Beef or Fish Patties and Chicken Wings.",
+  },
+  "gracelyn-achebo-awusu": {
+    displayName: "Gracelyn Achebo-Awusu",
+    message:
+      "We would be grateful if you can bring any of the following: Mac and Cheese, Kebab Sticks, Condiments, Beef or Fish Patties and Chicken Wings.",
+  },
+  "jade-marie-arthur": {
+    displayName: "Jade-Marie Arthur",
+    message:
+      "We would be grateful if you can bring any of the following: Mac and Cheese, Kebab Sticks, Condiments, Beef or Fish Patties and Chicken Wings.",
+  },
+  "tate-lolita": {
+    displayName: "Tate Lolita",
+    message:
+      "We would be grateful if you can bring any of the following: Mac and Cheese, Kebab Sticks, Condiments, Beef or Fish Patties and Chicken Wings.",
+  },
+  "caitlin": {
+    displayName: "Caitlin",
+    message:
+      "We would be grateful if you can bring any of the following: Mac and Cheese, Kebab Sticks, Condiments, Beef or Fish Patties and Chicken Wings.",
+  },
+  "henry": {
+    displayName: "Henry",
+    message:
+      "AYYE BIG BALLER! Thanks for being down to put some money in to the pot for this BBQ. You can use this link to send over £5. This will go towards the food and DJs playing throughout the night. Please note you do not have to bring anything after placing the contribution.\n\nhttps://bit.ly/NJMT-BBQ-CON",
+  },
+  "olu-qdex": {
+    displayName: "Olu Qdex",
+    message:
+      "AYYE BIG BALLER! Thanks for being down to put some money in to the pot for this BBQ. You can use this link to send over £5. This will go towards the food and DJs playing throughout the night. Please note you do not have to bring anything after placing the contribution.\n\nhttps://bit.ly/NJMT-BBQ-CON",
+  },
+  "sabrina-ansah": {
+    displayName: "Sabrina Ansah",
+    message:
+      "AYYE BIG BALLER! Thanks for being down to put some money in to the pot for this BBQ. You can use this link to send over £5. This will go towards the food and DJs playing throughout the night. Please note you do not have to bring anything after placing the contribution.\n\nhttps://bit.ly/NJMT-BBQ-CON",
+  },
+  "lea-barron": {
+    displayName: "Lea Barron",
+    message:
+      "AYYE BIG BALLER! Thanks for being down to put some money in to the pot for this BBQ. You can use this link to send over £5. This will go towards the food and DJs playing throughout the night. Please note you do not have to bring anything after placing the contribution.\n\nhttps://bit.ly/NJMT-BBQ-CON",
+  },
+  "bernice-hughes": {
+    displayName: "Bernice Hughes",
+    message:
+      "AYYE BIG BALLER! Thanks for being down to put some money in to the pot for this BBQ. You can use this link to send over £5. This will go towards the food and DJs playing throughout the night. Please note you do not have to bring anything after placing the contribution.\n\nhttps://bit.ly/NJMT-BBQ-CON",
+  },
+  "leroy-shabaka-pinder": {
+    displayName: "Leroy Shabaka Pinder",
+    message:
+      "AYYE BIG BALLER! Thanks for being down to put some money in to the pot for this BBQ. You can use this link to send over £5. This will go towards the food and DJs playing throughout the night. Please note you do not have to bring anything after placing the contribution.\n\nhttps://bit.ly/NJMT-BBQ-CON",
+  },
+  "hope-fashina": {
+    displayName: "Hope Fashina",
+    message:
+      "AYYE BIG BALLER! Thanks for being down to put some money in to the pot for this BBQ. You can use this link to send over £5. This will go towards the food and DJs playing throughout the night. Please note you do not have to bring anything after placing the contribution.\n\nhttps://bit.ly/NJMT-BBQ-CON",
+  },
+  "aleria": {
+    displayName: "Aleria",
+    message:
+      "AYYE BIG BALLER! Thanks for being down to put some money in to the pot for this BBQ. You can use this link to send over £5. This will go towards the food and DJs playing throughout the night. Please note you do not have to bring anything after placing the contribution.\n\nhttps://bit.ly/NJMT-BBQ-CON",
+  },
+  "aiesha": {
+    displayName: "Aiesha",
+    message:
+      "We have seen you have either listed bringing drinks or happy to bring from the list. We would love if you could bring any mixers or alcohol to the BBQ. Points for anyone that brings ice too!",
+  },
+  "wildat-hassan": {
+    displayName: "Wildat Hassan",
+    message:
+      "We have seen you have either listed bringing drinks or happy to bring from the list. We would love if you could bring any mixers or alcohol to the BBQ. Points for anyone that brings ice too!",
+  },
+  "doyin-ajiboye": {
+    displayName: "Doyin Ajiboye",
+    message:
+      "We have seen you have either listed bringing drinks or happy to bring from the list. We would love if you could bring any mixers or alcohol to the BBQ. Points for anyone that brings ice too!",
+  },
+  "seyi": {
+    displayName: "Seyi",
+    message:
+      "We have seen you have either listed bringing drinks or happy to bring from the list. We would love if you could bring any mixers or alcohol to the BBQ. Points for anyone that brings ice too!",
+  },
+  "michael-stay-wavey": {
+    displayName: "Michael (Stay Wavey)",
+    message:
+      "We have seen you have either listed bringing drinks or happy to bring from the list. We would love if you could bring any mixers or alcohol to the BBQ. Points for anyone that brings ice too!",
+  },
+  "jordan": {
+    displayName: "Jordan",
+    message:
+      "We have seen you have either listed bringing drinks or happy to bring from the list. We would love if you could bring any mixers or alcohol to the BBQ. Points for anyone that brings ice too!",
+  },
+  "chanice-cooke": {
+    displayName: "Chanice Cooke",
+    message:
+      "We have seen you have either listed bringing drinks or happy to bring from the list. We would love if you could bring any mixers or alcohol to the BBQ. Points for anyone that brings ice too!",
+  },
+};
 
-  const guest = guestData[name.toLowerCase()];
-  if (!guest) {
-    return (
-      <div style={{ textAlign: 'center', padding: '2rem' }}>
-        <h1>Name Not Found</h1>
-        <p>Please double-check the spelling and try again.</p>
-      </div>
-    );
-  }
+export default function GuestPage({ guest }) {
+  if (!guest) return <h1>404 - Guest Not Found</h1>;
 
   return (
-    <div style={{ maxWidth: '700px', margin: 'auto', padding: '2rem', textAlign: 'center' }}>
-      <h1>Hi {guest.displayName},</h1>
-      <p>Thanks for getting this far and listing your name down. Please make sure you read all the information below and if you have any questions give us a shout!</p>
-      <p><strong>{guest.message}</strong></p>
-      <hr />
-      <p><strong>DIETARY REQUIREMENTS:</strong><br />For anyone bringing food, please ensure to list anything with (egg, nuts or fish in it) we have multiple people attending with allergies.</p>
-      <p><strong>DIETARY REQUESTS:</strong><br />If you have requested either no pork, no fish or have an allergy. Please make sure NJ, Hillary or Renee know as soon as you arrive to ensure you get something to eat. (Heads up!) We won’t be able to do much if you arrive too late!</p>
-      <p>Thanks so much and see you soon!<br /><em>The full address will be listed 24 hrs to the event and the closest station is Norbury Station!</em></p>
+    <div style={{ padding: "2rem", maxWidth: "600px", margin: "auto", fontFamily: "Arial, sans-serif" }}>
+      <h1>Hey {guest.displayName} 👋</h1>
+      <p>{guest.message}</p>
     </div>
   );
+}
+
+export async function getStaticPaths() {
+  const paths = Object.keys(guestMessages).map((name) => ({
+    params: { name },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const guest = guestMessages[params.name] || null;
+  return { props: { guest } };
 }
